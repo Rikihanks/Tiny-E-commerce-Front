@@ -31,6 +31,7 @@ export class HomeComponent implements OnInit {
 
   filterByCategory(cat: string) {
     if(cat == null) {
+      this.filteringByCat = false;
       this.filteredItems = this.items;
     }else {
       this.filteringByCat = true;
@@ -49,6 +50,7 @@ export class HomeComponent implements OnInit {
 
   resetPriceFilter() {
     this.filteredItems = this.items;
+    this.actual = Number.parseFloat(this.getMin());
   }
 
   getMin() {

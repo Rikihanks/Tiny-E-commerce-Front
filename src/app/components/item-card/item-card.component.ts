@@ -18,6 +18,8 @@ export class ItemCardComponent implements OnInit {
   ngOnInit() {
     this.item.numberOfUnits = 1;
     this.carritoService.getCarrito().subscribe(res => {
+      console.log(res);
+      
       this.carrito = res;
     })
   }
@@ -27,7 +29,7 @@ export class ItemCardComponent implements OnInit {
       this.carrito = []
     }
     if(this.carrito.findIndex(p => p.id == this.item.id) != -1) {
-      this.carrito[this.carrito.indexOf(this.item)].numberOfUnits++;
+      this.carrito[this.carrito.findIndex(p => p.id == this.item.id)].numberOfUnits++;
     }else {
       this.carrito.push(this.item);
     }
@@ -38,7 +40,7 @@ export class ItemCardComponent implements OnInit {
       title: 'Added to cart',
       allowOutsideClick: false,
       showConfirmButton: false,
-      timer: 800,
+      timer: 1500,
       backdrop: null
     });
   }
