@@ -1,0 +1,30 @@
+<div class="container-fluid">
+ <div class="row">
+   <div class="col-md-2" style="border-right: 1px solid lightgray;">
+      <div class="card" style="margin-top: 10px; text-align: center;">
+         <div class="card-header pointer" (click)="filterByCategory(null)">
+           Reset category filter
+         </div>
+         <ul class="list-group list-group-flush" *ngFor="let cat of categories">
+           <li class="list-group-item pointer" (click)="filterByCategory(cat)"> {{cat}}</li>
+         </ul>
+       </div>
+       
+       <div style="text-align: center;">
+         <br>
+         <label for="pricefilter" style="width: 100%; text-align: center;">
+            <span style="font-weight: bold;">Min: {{getMin()}}€</span> -  [{{actual.toFixed(2)}}€] - <span style="font-weight: bold;">Max: {{getMax()}}€</span>
+         </label>
+         <br>
+         <input id="pricefilter" step="0.01" type="range" [min]="getMin()" [max]="getMax()" [(ngModel)]="actual" style="width: 100%;">
+         <button class="btn btn-primary mr-md-1" (click)="applyPriceFilter()">Apply price filter</button>
+         <button class="btn btn-secondary" (click)="resetPriceFilter()">Reset price filter</button>
+       </div>
+   </div>
+   <div class="col-md-10" style="display: flex; flex-direction: row; justify-content: space-evenly; flex-flow: wrap;">
+      <div *ngFor="let item of filteredItems">
+         <app-item-card [item]="item"></app-item-card>
+      </div>
+   </div>
+ </div>
+</div>

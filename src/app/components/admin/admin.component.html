@@ -1,0 +1,36 @@
+<div class="container-fluid" style="background-color: white;">
+    <table class="table" style="margin-top: 5%;">
+        <thead class="thead-dark" style="text-align: center;">
+          <tr>
+            <th scope="col">Actions</th>
+            <th scope="col">Processed</th>
+            <th scope="col">Address</th>
+            <th scope="col">Country</th>
+            <th scope="col">Credit Card Number</th>
+            <th scope="col">Postal Code</th>
+            <th scope="col">User ID</th>
+            <th scope="col">Items ID</th>
+            <th scope="col">Total</th>
+          </tr>
+        </thead>
+        <tbody *ngFor="let order of orders" style="text-align: center;">
+          <tr>
+            <th scope="row"><button class="btn btn-primary" [disabled]="order.processed" (click)="prepareProcessOrder(order)">Process Order</button></th>
+            <td [ngStyle]="{
+                color: order.processed
+                  ? 'hsl(141, 53%, 53%)'
+                  : 'hsl(348, 100%, 61%)'
+              }">{{order.processed | yesno }}</td>
+            <td>{{order.address}}</td>
+            <td>{{order.country}}</td>
+            <td>{{order.creditCardNumber}}</td>
+            <td>{{order.postalCode}}</td>
+            <td [title]="order.user.username">{{order.user.id}}</td>
+            <td [title]="order.items | itemFull">{{order.items | item}}</td>
+            <td>{{getTotal(order) | number : '1.2-2'}}€ </td>
+            
+          </tr>
+          
+        </tbody>
+      </table>
+</div>

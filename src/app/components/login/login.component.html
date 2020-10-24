@@ -1,0 +1,45 @@
+<div class="container">
+  <div class="row text-center login-page">
+	   <div class="col-md-12 login-form">
+	      <form class="form"> 			
+	         <div class="row">
+		    <div class="col-md-12 login-form-header">
+		       <p class="login-form-font-header">TinyEccomerce<p>
+		    </div>
+		</div>
+		<div class="row mt-4 d-flex justify-content-center">
+		   <div class="col-md-4">
+		      <input name="usuario" type="text" placeholder="Username" required class="form-control centered" [(ngModel)]="username"/>
+		   </div>
+		</div>
+		<div class="row mt-4 d-flex justify-content-center">
+		   <div class="col-md-4">
+		      <input name="password" type="password" placeholder="Password" required class="form-control centered" [(ngModel)]="password"/>
+		   </div>
+    </div>
+    <div class="row mt-4">
+      <span class="col-md-12">  
+        <a routerLink="/register" routerLinkActive="active">Register</a>
+      </span>
+    </div>
+		<div class="row mt-4">
+		   <div class="col-md-12 login-from-row">
+		      <button class="btn btn-primary" (click)="doLogin()">Log In</button>
+		   </div>
+		</div>
+		</form>
+		<div *ngIf="credentialError" class="row mt-4">
+			<div class="col-md-12 login-from-row">
+				<div class="card">
+					<div class="card-body">
+						<h3 class="text text-danger">BAD CREDENTIALS</h3>
+						<h4 class="text">Consider registering if you haven't done it already.</h4>
+					</div>
+				  </div>
+			  
+			   
+			</div>
+		 </div>
+	</div>
+     </div>
+  </div>

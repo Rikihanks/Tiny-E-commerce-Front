@@ -1,0 +1,44 @@
+<div class="container">
+    <div class="row text-center login-page">
+         <div class="col-md-12 login-form" style="margin-top: 10%;">
+            <form class="form"> 			
+               <div class="row">
+              <div class="col-md-12 login-form-header">
+                 <h2>REGISTRATION FORM</h2>
+              </div>
+          </div>
+          <div class="row mt-4 d-flex justify-content-center">
+             <div class="col-md-4">
+                <input name="usuario" type="text" placeholder="Username" required class="form-control centered" [(ngModel)]="username"/>
+                <small>This will be your username to log in</small>
+             </div>
+          </div>
+          <div class="row mt-4 d-flex justify-content-center">
+            <div class="col-md-4">
+               <input name="surname" type="text" placeholder="Surname" required class="form-control centered" [(ngModel)]="surname"/>
+            </div>
+         </div>
+          <div class="row mt-4 d-flex justify-content-center">
+             <div class="col-md-4">
+                <input name="password" type="password" placeholder="Password" required class="form-control centered" [(ngModel)]="password"/>
+             </div>
+         </div>
+         <div class="row mt-4 d-flex justify-content-center">
+            <div class="col-md-4">
+               <input name="dni" type="text" placeholder="National Identification Number" required class="form-control centered" [(ngModel)]="dni"/>
+            </div>
+        </div>
+        <div class="row mt-4 d-flex justify-content-center">
+            <div class="col-md-4">
+               <input name="email" type="text" placeholder="Email" required class="form-control centered" [(ngModel)]="email"/>
+            </div>
+        </div>
+          <div class="row mt-4">
+             <div class="col-md-12 login-from-row">
+                <button class="btn btn-primary" (click)="doRegister()">Complete registration</button>
+             </div>
+          </div>
+          </form>
+      </div>
+       </div>
+    </div>

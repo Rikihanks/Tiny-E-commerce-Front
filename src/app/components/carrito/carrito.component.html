@@ -1,0 +1,56 @@
+
+<!--<div style="text-align: center; margin:5px">
+    <h3>Your cart</h3>
+    <div *ngIf="carrito.length > 0">
+        <button type="button" class="btn btn-secondary" (click)="clearCart()">Clear Items <i class="fa fa-trash fa-lg"></i></button>
+        <button type="button" class="btn btn-success" (click)="doCheckout()">Checkout <i class="fa fa-credit-card fa-lg"></i></button>
+        <br>
+        <span *ngIf="carrito.length > 0">Total: {{getTotal()}} €</span>
+    </div>
+    
+    <ul class="card-body undecoratedList" *ngFor="let item of carrito">
+        <li><span class="badge badge-info">Units {{item.numberOfUnits}}</span>  {{item.itemName}}
+            <button class="btn btn-danger" (click)="removeOne(item.id)" [disabled]="item.numberOfUnits == 0"><i class="fa fa-minus-square fa-lg" ></i></button>
+            <span></span>
+            <button class="btn btn-success" (click)="addOne(item.id)"><i class="fa fa-plus-square fa-lg"></i></button>
+        </li>
+    </ul>
+</div>-->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 class="modal-title" id="exampleModalLabel" >Your cart</h4>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body" >
+            <div *ngIf="carrito.length > 0" class="d-flex justify-content-between" style="flex-flow: wrap;">
+                <ul class="card-body undecoratedList" *ngFor="let item of carrito">
+                    <li>
+                        <div class="card" style="width: 18rem;">
+                            <div class="card-body" style="text-align: center;">
+                              <h5 class="card-title"><span class="badge badge-info" style="width: 100%;">Quantity: {{item.numberOfUnits}}</span>  </h5>
+                              <h6 class="card-subtitle mb-2 text-muted"><span style="font-weight: bold;">Description:</span><span>{{item.description}}</span></h6>
+                              <h6 class="card-subtitle mb-2 text-muted"><span style="font-weight: bold;">Price:</span><span>{{item.itemPrice}}</span></h6>
+                              <button class="btn btn-danger" style="margin-right: 5px;" (click)="removeOne(item.id)" [disabled]="item.numberOfUnits == 0"><i class="fa fa-minus-square fa-lg" ></i></button>
+                              <button class="btn btn-success" (click)="addOne(item.id)"><i class="fa fa-plus-square fa-lg"></i></button>
+                            </div>
+                          </div>
+                    </li>
+                </ul>
+            </div>
+
+            <div *ngIf="carrito == null || carrito.length == 0">
+                <h5>Add items to your cart using the button "Add to cart"</h5>
+            </div>
+        </div>
+        <div *ngIf="carrito.length > 0" class="modal-footer">
+          <h5 class="text text-danger">Total: {{getTotal()}} €</h5>
+          <button type="button" class="btn btn-secondary" (click)="clearCart()">Clear Items <i class="fa fa-trash fa-lg"></i></button>
+          <button type="button" class="btn btn-success" (click)="doCheckout()">Checkout <i class="fa fa-credit-card fa-lg"></i></button>
+        </div>
+      </div>
+    </div>
+</div>

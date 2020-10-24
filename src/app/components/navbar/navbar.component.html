@@ -1,0 +1,23 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand" href="#">TinnyEcommerce</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+  
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul  class="navbar-nav mr-auto">
+        <li class="nav-item">
+          <a *ngIf="user && isAdmin()" class="nav-link" [routerLink]="['/admin']" routerLinkActive="true"  >Admin Panel</a>
+        </li>
+      </ul>
+      <span *ngIf="user" class="form-inline my-2 my-lg-0">
+        <span  style="margin-right: 20px;">Welcome {{user.username}}</span>
+        <div style="display: flex; cursor: pointer; padding: 5px;" data-toggle="modal" data-target="#exampleModal">
+          <span class="fa fa-shopping-cart fa-lg" style="color: #17a2b8;"></span><span class="badge badge-info" style="width: 100%; margin-left: 5px; margin-right: 15px;">{{getItemCount()}}</span>
+        </div>
+        <button class="btn btn-outline-danger my-2 my-sm-0" (click)="doLogout()">Log Out  <i class="fa fa-sign-out fa-lg"></i></button>
+      </span>
+    </div>
+    
+    <app-carrito></app-carrito>
+  </nav>
