@@ -4,7 +4,7 @@ import { BehaviorSubject, Observable } from 'rxjs';
 import { timeInterval } from 'rxjs/operators';
 import { UserLoggedIn } from '../model/userLoggedin';
 import { CarritoService } from './carrito.service';
-
+import { environment } from '../../environments/environment';
 @Injectable({
   providedIn: 'root'
 })
@@ -19,7 +19,7 @@ export class UserService {
   private user = new BehaviorSubject<UserLoggedIn>(JSON.parse(window.localStorage.getItem("user")));
 
   login(user: any): Observable<any> {
-    return this.http.post(`http://localhost:8080/oauth/token?grant_type=password&username=${user.userName}&password=${user.password}`, null, this.options);
+    return this.http.post(`${environment.baseUrl}oauth/token?grant_type=password&username=${user.userName}&password=${user.password}`, null, this.options);
   }
 
   registerUser(username: string, surname: string, password: string, dni: string, email: string): Observable<any> {
@@ -30,7 +30,7 @@ export class UserService {
       dni: dni,
       email: email
     }
-    return this.http.post(`http://localhost:8080/private/users/createUser`, user);
+    return this.http.post(`${environment.baseUrl}private/users/createUser`, user);
   }
 
   setToken(token: any) {
@@ -59,7 +59,7 @@ export class UserService {
   }
 
   getUserInfo(username: string): Observable<any> {
-    return this.http.get(`http://localhost:8080/private/users/getUserDetails?access_token=${this.getToken().access_token}&userName=${username}`);
+    return this.http.get(`${environment.baseUrl}private/users/getUserDetails?access_token=${this.getToken().access_token}&userName=${username}`);
   }
 
   isAdmin(): boolean {
@@ -76,15 +76,13 @@ export class UserService {
 
   private startCountdownToRefreshToken(token: any) {
     const minutosExpiracionToken = (token.expires_in - 50) / 60;
-    console.log('el token expira en : ' + minutosExpiracionToken + 'minutos');
     let timeInterval = null;
     clearInterval(timeInterval);
     timeInterval = setInterval(() => {this.updateToken(token.refresh_token)},(minutosExpiracionToken*60000));
   }
 
   updateToken(refreshToken: number) {
-    console.log("renovando token "+refreshToken)
-    this.http.post(`http://localhost:8080/oauth/token?grant_type=refresh_token&refresh_token=${refreshToken}`, null, this.options).subscribe(res => {
+    this.http.post(`${environment.baseUrl}oauth/token?grant_type=refresh_token&refresh_token=${refreshToken}`, null, this.options).subscribe(res => {
       this.setToken(res)
     })
   }

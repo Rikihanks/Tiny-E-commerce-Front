@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
+import { environment } from 'src/environments/environment';
 import { Item } from '../model/item';
 import { UserService } from './user.service';
 
@@ -14,7 +15,7 @@ export class ItemService {
   private items = new BehaviorSubject<Item[]>([]);
 
   getItems() {
-    this.http.get(`http://localhost:8080/private/items/getItems?access_token=${this.userService.getToken().access_token}`).subscribe(res => {
+    this.http.get(`${environment.baseUrl}private/items/getItems?access_token=${this.userService.getToken().access_token}`).subscribe(res => {
       if(res != null) {
         this.setItems(res);
       }

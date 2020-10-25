@@ -48,7 +48,6 @@ export class CheckoutComponent implements OnInit {
       showLoaderOnConfirm: true,
       preConfirm: () => {
         return this.orderService.createOrder(this.order).subscribe(res => {
-          console.log(res);
         }, err => { console.log(err); }
         );
       },

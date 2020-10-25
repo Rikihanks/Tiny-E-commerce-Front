@@ -18,7 +18,6 @@ export class CarritoComponent implements OnInit {
   ngOnInit() {
     this.carritoService.getCarrito().subscribe(res => {
       this.carrito = res;
-      console.log('el carrito ha cambiado', this.carrito);
     })
   }
 

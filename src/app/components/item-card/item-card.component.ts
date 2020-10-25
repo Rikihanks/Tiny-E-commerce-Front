@@ -18,8 +18,6 @@ export class ItemCardComponent implements OnInit {
   ngOnInit() {
     this.item.numberOfUnits = 1;
     this.carritoService.getCarrito().subscribe(res => {
-      console.log(res);
-      
       this.carrito = res;
     })
   }

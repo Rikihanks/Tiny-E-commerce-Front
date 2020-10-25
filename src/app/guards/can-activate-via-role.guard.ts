@@ -12,7 +12,6 @@ export class CanActivateViaRoleGuard implements CanActivate {
 
   canActivate() {
     if (!this.authService.isAdmin()) {
-     console.log('No eres admin');
      this.router.navigate(['/forbidden']);
      return false;
     }

@@ -21,12 +21,10 @@ export class TokenInterceptorService implements HttpInterceptor{
 
         if (err.status === 401 ) {
           if(err.error.error == "invalid_token") {
-            console.log('token caducado intentamos renovarlo');
             this.userService.updateToken(token.refresh_token);
           }
         }
         if(err.status === 400) {
-          console.log('no se puede renovar token redireccionamos a login');
           this.userService.doLogout();
           this.router.navigate(['/login'],  { queryParams: { sessionNotValid: 'true' } });
         }

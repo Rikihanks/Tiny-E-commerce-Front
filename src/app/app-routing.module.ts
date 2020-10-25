@@ -15,7 +15,7 @@ const routes: Routes = [
   {path: 'register', component: RegisterComponent, pathMatch: 'full'},
   { path: 'login', component: LoginComponent },
   { path: 'forbidden', component: ForbiddenComponent },
-  { path: 'admin', component: AdminComponent, canActivate: [CanActivateViaRoleGuard]},
+  { path: 'admin', component: AdminComponent, canActivate: [CanActivateViaAuthGuard, CanActivateViaRoleGuard]},
   { path: 'checkout', component: CheckoutComponent, canActivate: [CanActivateViaAuthGuard]},
   { path: 'home', component: HomeComponent, canActivate: [CanActivateViaAuthGuard] }
 ];
