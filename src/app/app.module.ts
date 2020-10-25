@@ -9,7 +9,7 @@ import { FormsModule } from '@angular/forms';
 import { HomeComponent } from './components/home/home.component';
 import { TraitPipe } from './pipes/trait.pipe';
 import { LoginComponent } from './components/login/login.component';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { ItemCardComponent } from './components/item-card/item-card.component';
 import { CarritoComponent } from './components/carrito/carrito.component';
@@ -20,6 +20,7 @@ import { ItemPipe } from './pipes/item.pipe';
 import { ItemFullPipe } from './pipes/item-full.pipe';
 import { YesnoPipe } from './pipes/yesno.pipe';
 import { RegisterComponent } from './components/register/register.component';
+import { TokenInterceptorService } from './interceptors/token-interceptor.service';
 
 @NgModule({
   declarations: [
@@ -48,7 +49,11 @@ import { RegisterComponent } from './components/register/register.component';
     BrowserAnimationsModule,
     HttpClientModule
   ],
-  providers: [],
+  providers: [ {
+    provide: HTTP_INTERCEPTORS,
+    useClass: TokenInterceptorService,
+    multi: true
+  }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

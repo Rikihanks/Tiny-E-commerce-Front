@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { UserService } from 'src/app/services/user.service';
 import {flatMap, map, mergeMap, tap} from 'rxjs/operators';
 import { UserLoggedIn } from 'src/app/model/userLoggedin';
@@ -13,12 +13,17 @@ export class LoginComponent implements OnInit {
   username: string;
   password: string;
   credentialError: boolean;
+  sessionNotValidParam = false;
 
-  constructor(private router: Router, private userService: UserService) { }
+  constructor(private router: Router, private route: ActivatedRoute, private userService: UserService) { }
 
   ngOnInit() {
-
-
+    this.route.queryParams.subscribe(params => {
+     if(params.sessionNotValid != null) {
+      this.sessionNotValidParam = params.sessionNotValid;
+     }
+    })
+  
   }
 
 

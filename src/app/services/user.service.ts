@@ -83,7 +83,7 @@ export class UserService {
   }
 
   updateToken(refreshToken: number) {
-    console.log("renovando token")
+    console.log("renovando token "+refreshToken)
     this.http.post(`http://localhost:8080/oauth/token?grant_type=refresh_token&refresh_token=${refreshToken}`, null, this.options).subscribe(res => {
       this.setToken(res)
     })

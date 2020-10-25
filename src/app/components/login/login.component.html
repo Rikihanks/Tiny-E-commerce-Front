@@ -28,6 +28,15 @@
 		   </div>
 		</div>
 		</form>
+		<div *ngIf="sessionNotValidParam" class="row mt-4">
+			<div class="col-md-12 login-from-row">
+				<div class="card">
+					<div class="card-body">
+						<h3 class="text text-danger">Session Expired, you need to log in again.</h3>
+					</div>
+				  </div>
+			</div>
+		 </div>
 		<div *ngIf="credentialError" class="row mt-4">
 			<div class="col-md-12 login-from-row">
 				<div class="card">
@@ -36,8 +45,6 @@
 						<h4 class="text">Consider registering if you haven't done it already.</h4>
 					</div>
 				  </div>
-			  
-			   
 			</div>
 		 </div>
 	</div>
